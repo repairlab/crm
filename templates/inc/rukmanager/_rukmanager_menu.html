@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg" style="margin-left:5%;">
+    
+    <ul class="navbar-nav">
+      
+        <a class="nav-link" href="{% url 'rukmanager' %}"  role="button"
+          aria-expanded="false" style="color: #330033;">
+          Заявки
+        </a>
+      
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false" style="color: #330033;">
+          Календари
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink"
+          style="background-color: #330033;">
+          <li><a class="dropdown-item" href="#">Календарь записей</a></li>
+          <li><a class="dropdown-item" href="#">Календарь перезвонов</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false" style="color: #330033;">
+          Обучение
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink"
+          style="background-color: #330033;">
+          <li><a class="dropdown-item" href="#">Обучение</a></li>
+          <li><a class="dropdown-item" href="#">Методическое пособие</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    <a class="btn btn-sm" style="background-color: #330033; color: white;" href="{% url 'add_lids' %}" role="button">Добавить заявку</a>
+    
+    <div style="display: flex; margin-left: 47%;" class="col-sm">
+      <img style="width: 18px; height: 18px; margin-top: 2px;" src="https://cdn.icon-icons.com/icons2/1539/PNG/512/3289576-individual-man-people-person_107097.png"
+        alt="call-info">
+      <div style="font-size: 15px; margin-left: 10px; color: #330033;">{{ user.rukmanager }} / <a href="{% url 'logout' %}" style="text-decoration:none; color: #330033; font-weight:bold;">Выйти</a></div>
+
+    </div>
+    
+  </nav>

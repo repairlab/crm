@@ -1,0 +1,125 @@
+{% load static %}
+    <nav aria-label="..." style=" margin-left:5%;">
+          <ul class="pagination pagination-sm">
+              {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" style="background-color: #330033; border-color: #330033; color: white;" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+              {% endif %}
+            
+              {% for p in page_obj.paginator.page_range %}
+                
+                {% if page_obj.number == p %}
+                  <li class="page-item active"  aria-current="page">
+                    <a class="page-link"  style="background-color: #330033; border-color: #330033;" href="?page={{ p }}">{{ p }}</a>
+                  </li>
+                {% elif p > page_obj.number|add:-5 and p < page_obj.number|add:5 %}
+                  <li class="page-item">
+                    <a class="page-link" style="color: #330033;" href="?page={{ p }}">{{ p }}</a>
+                  </li>
+                {% endif %}
+                
+            
+              {% endfor %}
+              {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" style="background-color: #330033; border-color: #330033; color: white;" href="?page={{ page_obj.next_page_number }}" aria-label="Previous">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+              {% endif %}
+          </ul>
+      </nav>
+
+
+<table id="dtBasicExample" class="table table-bordered table-sm" style="width: 90%; margin:auto; box-shadow: 0px 0px 10px #330033; margin-top: 10px; padding: 0;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #330033; width: 30%;">Данные колл-центра</th>
+      <th style="border: 1px solid #330033;">Данные клиента</th>
+      <th style="border: 1px solid #330033; width: 6%;">
+        
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for item in page_obj.object_list  %}
+    
+    <tr style="border: 1px solid #330033;">
+      <td>
+        <div class="container">
+          <div class="row" style="border-bottom: 1px solid rgb(212, 212, 212); margin-top: 3px;">
+            <div class="col-sm" style="display: flex;">
+              <img style="width: 18px; height: 18px;" src="{% static 'img/default/otdel.png' %}" alt="call-info">
+              <div style="font-size: 15px; margin-left: 10px;">Отдел: {{ item.region }} | <img style="width: 18px; height: 18px;" src="{% static 'img/default/call.png' %}" alt="call-info"> Руководитель КЦ: {{ item.rukmanager }}</div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm" style="text-align: center; font-size: 15px;"></div>
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <div class="container">
+          <div class="row" style="border-bottom: 1px solid rgb(212, 212, 212);">
+            <div style="display: flex;" class="col-sm">
+              <img style="width: 18px; height: 18px; margin-top: 2px;" src="{% static 'img/default/user.png' %}"
+                alt="call-info">
+              <div style="font-size: 15px; margin-left: 10px;">Имя: {{ item.name }}</div>
+            </div>
+            <div style="display: flex;" class="col-sm">
+              <img style="width: 18px; height: 18px; margin-top: 2px;" src="{% static 'img/default/phone.png' %}" alt="call-info">
+              <div style="font-size: 15px; margin-left: 10px;">Номер: {{ item.number }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row" style="border-bottom: 1px solid rgb(212, 212, 212);">
+            <div style="display: flex;" class="col-sm">
+              <img style="width: 18px; height: 18px; margin-top: 2px;" src="{% static 'img/default/calendar.png' %}"
+                alt="call-info">
+              <div style="font-size: 15px; margin-left: 10px;">Дата создания: {{ item.datecreate }}</div>
+            </div>
+            <div style="display: flex;" class="col-sm">
+              <img style="width: 18px; height: 18px; margin-top: 2px;" src="{% static 'img/default/003--2.png' %}"
+                alt="call-info">
+              <div style="font-size: 15px; margin-left: 10px;">Регион: {{ item.region }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div style="display: flex;" class="col-sm">
+              <img style="width: 18px; height: 18px; margin-top: 2px;" src="{% static 'img/default/001-.png' %}"
+                alt="call-info">
+              <div style="font-size: 15px; margin-left: 10px;">Вопрос: {{ item.vopros }}</div>
+            </div>
+            <div style="display: flex;" class="col-sm">
+              <img style="width: 18px; height: 18px; margin-top: 2px;" src="{% static 'img/default/002--1.png' %}" alt="condition"
+                alt="call-info">
+              <div style="font-size: 15px; margin-left: 10px;">Статус: {{ item.status }}</div>
+            </div>
+          </div>
+      </td>
+      <td>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <a class="btn btn-sm" style="background-color: #330033; color: white;"  href="{% url 'read_lid_rukmanager' pk=item.pk %}" role="button">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    
+    {% endfor %}
+    
+  </tbody>
+</table>
